@@ -7,7 +7,6 @@ import PokemonList from "../components/PokemonList";
 
 export default function Pokedex() {
   const [pokemons, setPokemons] = useState([])
-  console.log('Pokemons ----->', pokemons);
   // Load pokemons from API
   useEffect(() => {
     (async () => {
