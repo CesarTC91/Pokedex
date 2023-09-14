@@ -4,7 +4,7 @@ import { getPokemonsDetailsApi, getMovesByPokemonApi } from '../api/pokeApi'
 import Header from '../components/Pokemon/Header';
 import Type from '../components/Pokemon/Type'
 import Stats from '../components/Pokemon/Stats'
-
+import Moves from '../components/Pokemon/Moves'
 
 export default function Pokemon(props) {
   const { goPokemon, route: { params } } = props;
@@ -31,6 +31,7 @@ export default function Pokemon(props) {
       image={pokemon.sprites.other["official-artwork"].front_default} 
       type={pokemon.types[0].type.name} />
       <Type types={pokemon.types} />
+      <Moves moves={pokemon.moves} />
       <Stats stats={pokemon.stats} />
     </ScrollView>
   )
