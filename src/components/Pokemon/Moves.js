@@ -14,6 +14,7 @@ export default function Moves(props){
           <Card key={index} style={styles.card}>
           <Card.Content>
           <Text style={styles.nameMove}>{capitalize(item.move.name)}</Text>
+          <Text style={styles.learnMove}>{capitalize(item.version_group_details[0].move_learn_method.name)}</Text>
           </Card.Content>
         </Card>
         )  
@@ -37,11 +38,19 @@ const styles = StyleSheet.create({
   },
   card:{
     width: '48%',
-    marginBottom:16
+    marginBottom:16,
+    backgroundColor: '#45dee6'
   },
   nameMove:{
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 31,
     paddingBottom: 5,
+    color: 'white'
+  },
+  learnMove:{
+    fontWeight: 'bold',
+    fontSize: 17,
+    paddingBottom: 5,
+    color: 'white'
   }
 })
