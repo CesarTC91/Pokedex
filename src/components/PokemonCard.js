@@ -6,13 +6,13 @@ import getColorByPokemonType from "../utils/getColorByPokemonType";
 
 export default function PokemonCard(props) {
   const { pokemon } = props;
-  const goPokemon = useNavigation();
+  const navigation = useNavigation();
   
   const pokemonColor = getColorByPokemonType(pokemon.type)
   const bgStyles = {backgroundColor: pokemonColor, ...styles.bgStyles}
 
   const goToPokemon = () => {
-    goPokemon.navigate("Pokemon", {id: pokemon.id})
+    navigation.navigate("Pokemon", {id: pokemon.id})
   }
 
   return (

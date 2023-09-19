@@ -1,15 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView } from 'react-native';
-import { getPokemonsDetailsApi, getMovesByPokemonApi } from '../api/pokeApi'
+import { getPokemonsDetailsApi} from '../api/pokeApi'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import Header from '../components/Pokemon/Header';
 import Type from '../components/Pokemon/Type'
 import Stats from '../components/Pokemon/Stats'
 import Moves from '../components/Pokemon/Moves'
 
 export default function Pokemon(props) {
-  const { goPokemon, route: { params } } = props;
+  const { navigation , route: { params } } = props;
 
   const [pokemon, setPokemon] = useState(null);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => null,
+      headerLeft: () => <Icon 
+      name='arrow-left' 
+      color='white' 
+      size={20} 
+      style={{marginLeft: 20}} 
+      onPress={navigation.goBack}
+      />
+    })
+  }, [navigation, params])
 
   useEffect(() => {
     (async () => {
@@ -17,7 +31,7 @@ export default function Pokemon(props) {
         const response = await getPokemonsDetailsApi(params.id);
         setPokemon(response);
       } catch (error) {
-        goPokemon.goBack();
+        navigation.goBack();
       }
     })()
   }, [params])
@@ -31,7 +45,7 @@ export default function Pokemon(props) {
       image={pokemon.sprites.other["official-artwork"].front_default} 
       type={pokemon.types[0].type.name} />
       <Type types={pokemon.types} />
-      <Moves moves={pokemon.moves} />
+      {/* <Moves moves={pokemon.moves} /> */}
       <Stats stats={pokemon.stats} />
     </ScrollView>
   )
