@@ -1,7 +1,20 @@
 import React from 'react'
-import { StyleSheet, View, Text, TextInput, Button, Keyboard } from 'react-native'
+import { 
+  StyleSheet, 
+  View, 
+  Text, 
+  TextInput, 
+  Button, 
+  Keyboard } from 'react-native'
+  import {useFormik} from 'formik'
+  import * as Yup from 'yup'
 
 export default function LoginForm() {
+
+  const formik = useFormik({
+    initialValues: initialValues()
+  })
+
   return (
     <View>
       <Text style={styles.title}>Iniciar Sesión</Text>
@@ -22,6 +35,12 @@ export default function LoginForm() {
       />
     </View>
   )
+}
+
+function initialValues(){
+  return{
+    username: "",
+    password: ""  }
 }
 
 const styles = StyleSheet.create({
